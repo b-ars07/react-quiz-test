@@ -3,9 +3,9 @@ import classes from './FinishedQuiz.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons'
 import Button from "../UI/Button/Button";
+import { Link } from "react-router-dom";
 
 const FinishedQuiz = (props) => {
-  console.log(props.quiz)
   const successCount = Object.keys(props.results).reduce((total, key) => {
     if (props.results[key] === 'success') {
       total++
@@ -36,13 +36,10 @@ const FinishedQuiz = (props) => {
         <p>Правильно {successCount} из {props.quiz.length}</p>
 
         <div>
-          <Button
-              onClick={props.onRetry}
-              type="primary"
-          >Повторить</Button>
-          <Button
-              type="success"
-          >Перейти к списку тестов</Button>
+          <Button onClick={props.onRetry} type="primary">Повторить</Button>
+          <Link to={'/'}>
+            <Button type="success">Перейти к списку тестов</Button>
+          </Link>
         </div>
       </div>
   );
